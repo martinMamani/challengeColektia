@@ -76,9 +76,14 @@ import axios from 'axios'
                 async addMovie(){
                 await axios.post('http://localhost:3000/movie/',{title:this.title,photo:this.photo,year:this.year})
                 this.title = ''
+                this.photo = ''
+                this.year = ''
             },
                 async updateMovie(idMovie){
                  await axios.put(`http://localhost:3000/movie/${idMovie}`,{title:this.titleUpdate,photo:this.photoUpdate,year:this.yearUpdate})
+                 this.titleUpdate = ''
+                 this.photoUpdate =''
+                 this.yearUpdate = ''
                  this.flag = false;
                 },
             change(){
@@ -94,7 +99,7 @@ import axios from 'axios'
                 
             },
             },
-            async updsdf() {
+            async updated() {
                  const response = await axios.get(`http://localhost:3000/movie/${this.name}`)
                 console.log(response.data)
                 this.movies = response.data

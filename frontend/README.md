@@ -2,20 +2,28 @@
 
 > challenge colektia
 
-## Build Setup
+# Paso 1
 
-``` bash
-# install dependencies
-npm install
+Forkearse el repositorio o descargarlo.
 
-# serve with hot reload at localhost:8080
-npm run dev
+# Paso 2
 
-# build for production with minification
-npm run build
+Tener instalado Node.js
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+# Paso 3 
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Abrir el directorio por linea de comando entrar en la carpeta frontend .
+
+# Paso 4 
+
+Una vez que entramos en la carpeta frontend hacer npm install , para descargar las dependencias del proyecto.
+
+
+# Paso 5
+
+Cuando se terminen de descargar las dependencias hacer npm start para correr el frontend.
+# Paso 6
+
+Escribir en el navegador la siguiente direccion http://localhost:8080/ , donde se va montado el frontend de la aplicacion.
+
+
