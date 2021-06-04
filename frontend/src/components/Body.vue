@@ -8,31 +8,42 @@
             <br>
             <input type="text" placeholder="year" v-model="year">
             <br>
-            <button type='submit' v-on:click.enter="addMovie" >AddMovie</button>
+            <b-button squared variant="outline-success" type='submit' v-on:click.enter="addMovie" >addMovie</b-button>
         </div>
            <hr>
-            <div v-bind:key="movie.id" v-for="movie in movies">
-                <h2>{{movie.title}}</h2>
-                <br>
-                <img v-bind:src="movie.photo" :alt="movie.photo">
-                <br>{{movie.year}}
-                <br>
-                <button v-on:click="deleteMovie(movie.id)">Delete</button>
-                <button v-on:click="change">Update</button>
-                <hr>
+               
+        <b-card-group deck>
+            <div id="card" v-bind:key="movie.id" v-for="movie in movies">
+                 <b-card
+                     :title="movie.title"
+                     :img-src="movie.photo"
+                     img-alt="Image"
+                     img-top
+                     tag="article"
+                     style="max-width: 20rem;"
+                    class="mb-2"
+                    background-color="red"
+                    >
+                    <b-card-text>
+                        {{movie.year}}
+                     </b-card-text>
+                    <b-button variant="outline-danger" v-on:click="deleteMovie(movie.id)">Delete</b-button>
+                    <b-button variant="outline-warning" v-on:click="change">Update</b-button>
+                 </b-card>
                 <div v-if="flag">
-        <div>
-              <h3>Update Movie</h3>
-             <input type="text" :placeholder="movie.title" v-model="titleUpdate">
-             <br>
-            <input type="text" :placeholder="movie.photo" v-model="photoUpdate">
-            <br>
-            <input type="text" :placeholder="movie.year" v-model="yearUpdate">
-            <br>
-            <button type='submit' v-on:click.enter="updateMovie(movie.id)" >UpdateMovie</button>
-        </div>
+                  <div>
+                         <h6>UPDATE MOVIE</h6>
+                        <input type="text" :placeholder="movie.title" v-model="titleUpdate">
+                        <br>
+                        <input type="text" :placeholder="movie.photo" v-model="photoUpdate">
+                        <br>
+                        <input type="text" :placeholder="movie.year" v-model="yearUpdate">
+                        <br>
+                        <b-button squared variant="outline-success" type='submit' v-on:click.enter="updateMovie(movie.id)" >UpdateMovie</b-button>
+                  </div>
                 </div>
-            </div>
+           </div>
+        </b-card-group>
     </div>
 </template>
 
@@ -64,22 +75,39 @@ import axios from 'axios'
                 },
                 async addMovie(){
                 await axios.post('http://localhost:3000/movie/',{title:this.title,photo:this.photo,year:this.year})
+                this.title = ''
             },
                 async updateMovie(idMovie){
                  await axios.put(`http://localhost:3000/movie/${idMovie}`,{title:this.titleUpdate,photo:this.photoUpdate,year:this.yearUpdate})
                  this.flag = false;
                 },
             change(){
-                this.flag = true
+                if(this.flag){
+                    console.log("flag true y cambio a false")
+                    return this.flag = false
+
+                }
+                if(!this.flag){
+                    console.log("flag false y cambio a true")
+                    return this.flag = true
+                }
+                
             },
-                },
+            },
+            async updsdf() {
+                 const response = await axios.get(`http://localhost:3000/movie/${this.name}`)
+                console.log(response.data)
+                this.movies = response.data
+            },
     }
 
 </script>
 
 
 <style>
-
+#card{
+    color:black
+}
 </style>
 
 
